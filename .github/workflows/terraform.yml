@@ -1,0 +1,19 @@
+name: 'Terraform'
+on:
+  push:
+jobs:
+  name: 'terraform'
+  runs-on: ubuntu-latest
+  steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+    - name: 'Checkout Terraform'
+      uses: hashicorp/setup-terraform@v1
+    - name: 'Extract Google Token for use in Terraform'
+      run: echo ${{ secrets.GOOGLE_TOKEN }} > app/terraform/terraform-sa-key.json
+    - name: 'Terraform Init'
+      run: make terraform-init
+    - name: 'Terraform Plan'
+      run: make terraform-plan
+    - name: 'Terraform Apply'
+      run: make terraform-apply
