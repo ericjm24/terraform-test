@@ -25,7 +25,7 @@ jobs:
       - run: ls
 
       - name: Install GCloud and export credentials
-        uses: google-github-actions/setup-gcloud
+        uses: google-github-actions/setup-gcloud@v1
         with:
           service_account_key: ${{ secrets.GOOGLE_TOKEN}}
           project_id: ${{ env.PROJECT_ID }}
