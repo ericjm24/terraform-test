@@ -23,7 +23,7 @@ jobs:
           GOOGLE_TOKEN: ${{secrets.GOOGLE_TOKEN}}
       
       - name: Add google credentials
-        run: export GOOGLE_APPLICATION_CREDENTIALS="./app/terraform/terraform-sa-key.json"
+        run: export GOOGLE_APPLICATION_CREDENTIALS="$PWD/app/terraform/terraform-sa-key.json"
       
       - name: First terraform init
         run: cd app/terraform && terraform init
