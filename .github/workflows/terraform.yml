@@ -18,4 +18,4 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Export Secret to JSON
-        run: echo ${{ secrets.GOOGLE_TOKEN }} > ./apps/terraform/terraform-sa-key.json
+        run: 'echo ${{ secrets.GOOGLE_TOKEN }} > ./apps/terraform/terraform-sa-key.json'
