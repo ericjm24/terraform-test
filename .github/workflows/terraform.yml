@@ -19,14 +19,18 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+      
+      - run: echo $PWD
+
+      - run: ls
 
       - name: Install GCloud and export credentials
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud
         with:
           service_account_key: ${{ secrets.GOOGLE_TOKEN}}
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
-          credentials_file_path: $PWD/app/terraform/terraform-sa-key.json
+          credentials_file_path: terraform-sa-key.json
       
       - name: First init
         run: cd app/terraform && terraform init
