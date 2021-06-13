@@ -29,7 +29,7 @@ jobs:
           credentials_file_path: ./app/terraform/terraform-sa-key.json
       
       - name: First init
-        run: terraform init
+        run: cd app/terraform && terraform init
       
       - name: Run Terraform init
         run: make terraform-init
