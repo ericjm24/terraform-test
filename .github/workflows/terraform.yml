@@ -22,5 +22,8 @@ jobs:
         env:
           GOOGLE_TOKEN: ${{secrets.GOOGLE_TOKEN}}
       
-      - name: Verify Google Token
-        run: 'cat terraform-sa-key.json'
+      - name: Run Terraform Init:
+        run: make terraform-init
+      
+      - name:
+        run: make terraform-plan
