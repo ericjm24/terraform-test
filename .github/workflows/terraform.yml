@@ -35,4 +35,4 @@ jobs:
           credentials_file_path: terraform-sa-key.json
       
       - name: First init
-        run: terraform init
+        run: terraform workspace select dev && terraform init
