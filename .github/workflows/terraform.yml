@@ -2,7 +2,7 @@ name: 'Terraform'
 on:
   push:
 jobs:
-  name: 'terraform'
+  name: My Terraform Job
   runs-on: ubuntu-latest
   steps:
     - name: 'Checkout'
