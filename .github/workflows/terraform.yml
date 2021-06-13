@@ -33,3 +33,6 @@ jobs:
 
       - name: Plan
         run: make terraform-plan
+
+      - name: Deploy
+        run: make terraform-apply
