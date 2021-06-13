@@ -32,6 +32,3 @@ override.tf.json
 *.code-workspace
 *key.json
 **/__pycache__/*
-
-#venv
-terraform-venv/*
