@@ -26,9 +26,9 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_TOKEN}}
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
-          credentials_file_path: app/terraform/terraform-sa-key.json
+          credentials_file_path: "${PWD}/app/terraform/terraform-sa-key.json"
       
       - run: ls
 
       - name: First init
-        run: cd app/terraform && terraform workspace select dev && terraform init
+        run: cd app/terraform && terraform workspace select dev && terraform init -reconfigure
