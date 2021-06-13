@@ -28,5 +28,8 @@ jobs:
           export_default_credentials: true
           credentials_file_path: ./app/terraform/terraform-sa-key.json
       
+      - name: First init
+        run: terraform init
+      
       - name: Run Terraform init
         run: make terraform-init
