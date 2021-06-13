@@ -20,6 +20,8 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       
+      - run: cd app/terraform
+      
       - run: echo $PWD
 
       - run: ls
@@ -33,4 +35,4 @@ jobs:
           credentials_file_path: terraform-sa-key.json
       
       - name: First init
-        run: cd app/terraform && terraform init
+        run: terraform init
