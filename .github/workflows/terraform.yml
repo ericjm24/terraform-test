@@ -34,5 +34,7 @@ jobs:
           export_default_credentials: true
           credentials_file_path: terraform-sa-key.json
       
+      - run: ls
+      
       - name: First init
         run: terraform workspace select dev && terraform init
