@@ -26,7 +26,7 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_TOKEN}}
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
-          credentials_file_path: ${{ $PWD/app/terraform/terraform-sa-key.json }}
+          credentials_file_path: ${{ shell echo $PWD/app/terraform/terraform-sa-key.json }}
       
       - run: ls
 
