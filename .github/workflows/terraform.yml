@@ -19,6 +19,8 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+      
+      - run: echo "WORKDIR=$PWD" >> $GITHUB_ENV
 
       - name: Install GCloud and export credentials
         uses: google-github-actions/setup-gcloud@v0.2.0
@@ -26,7 +28,7 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_TOKEN}}
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
-          credentials_file_path: ${{ format('{0}/app/terraform/terraform-sa-key.json', runner.temp) }}
+          credentials_file_path: ${{ format('{0}/app/terraform/terraform-sa-key.json', env.WORKDIR) }}
       
       - run: ls
 
