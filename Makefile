@@ -16,6 +16,7 @@ terraform-plan:
 	cd app/terraform && \
 	terraform workspace select $(ENV) && \
 	terraform plan \
+	-out \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars"
 
@@ -23,6 +24,7 @@ terraform-apply:
 	cd app/terraform && \
 	terraform workspace select $(ENV) && \
 	terraform apply \
+	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars"
 
@@ -30,5 +32,6 @@ terraform-destroy:
 	cd app/terraform && \
 	terraform workspace select $(ENV) && \
 	terraform destroy \
+	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars"
