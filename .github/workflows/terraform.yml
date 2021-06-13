@@ -14,7 +14,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v2
 
       - name: Setup Terraform
@@ -28,15 +28,19 @@ jobs:
           export_default_credentials: true
           credentials_file_path: ${{github.workspace}}/app/terraform/terraform-sa-key.json
 
-      - name: First init
+      - name: Set ENV
+        run: echo "ENV=dev" >> $GITHUB_ENV
+
+      - name: Initialize
         run: cd app/terraform && terraform init -reconfigure
 
       - name: Plan
         run: >
-          cd app/terraform && 
-          terraform workspace select $(ENV) && 
-          terraform plan 
-          -var-file="./environments/${ENV}/config.tfvars" 
+          cd app/terraform &&
+          terraform workspace select ${{env.ENV}} && 
+          terraform apply 
+          -auto-approve 
+          -var-file="./environments/${{env.ENV}}/config.tfvars" 
           -var-file="./environments/common.tfvars"
 
       - name: Deploy
