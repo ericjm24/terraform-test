@@ -42,6 +42,3 @@ jobs:
           -auto-approve 
           -var-file="./environments/${{env.ENV}}/config.tfvars" 
           -var-file="./environments/common.tfvars"
-
-      - name: Deploy
-        run: make terraform-apply
