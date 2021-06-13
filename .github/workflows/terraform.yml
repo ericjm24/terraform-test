@@ -32,7 +32,12 @@ jobs:
         run: cd app/terraform && terraform init -reconfigure
 
       - name: Plan
-        run: make terraform-plan
+        run: >
+          cd app/terraform && 
+          terraform workspace select $(ENV) && 
+          terraform plan 
+          -var-file="./environments/${ENV}/config.tfvars" 
+          -var-file="./environments/common.tfvars"
 
       - name: Deploy
         run: make terraform-apply
