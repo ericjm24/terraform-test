@@ -26,19 +26,18 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_TOKEN}}
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
-          credentials_file_path: ${{github.workspace}}/app/terraform/terraform-sa-key.json
+          credentials_file_path: ${{github.workspace}}/terraform/terraform-sa-key.json
 
       - name: Set ENV
         run: echo "ENV=dev" >> $GITHUB_ENV
 
       - name: Initialize
-        run: cd app/terraform && terraform init -reconfigure
+        run: cd terraform && terraform init -reconfigure
 
       - name: Plan
         run: >
-          cd app/terraform &&
-          terraform workspace select ${{env.ENV}} && 
-          terraform apply 
-          -auto-approve 
-          -var-file="./environments/${{env.ENV}}/config.tfvars" 
+          cd terraform &&
+          terraform workspace select ${{env.ENV}} &&
+          terraform plan
+          -var-file="./environments/${{env.ENV}}/config.tfvars"
           -var-file="./environments/common.tfvars"
