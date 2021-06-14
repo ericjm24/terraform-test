@@ -18,10 +18,10 @@ jobs:
     steps:
       - name: Set ENV
         run: |
-          if [ ${GITHUB_REF##*/}="main" ]
+          if [ ${GITHUB_REF##*/} = "main" ]
             then
               echo "ENV=prod" >> $GITHUB_ENV
-          elif [ ${GITHUB_REF##*/}="stage" ]
+          elif [ ${GITHUB_REF##*/} = "stage" ]
             then
               echo "ENV=stage" >> $GITHUB_ENV
           else
