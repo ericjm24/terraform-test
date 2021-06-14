@@ -13,14 +13,16 @@ terraform-init:
 	terraform workspace select $(ENV) && \
 	terraform init
 
-terraform-plan: terraform-init
+terraform-plan:
 	cd terraform && \
+	terraform workspace select $(ENV) && \
 	terraform plan \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars"
 
-terraform-apply: terraform-init
+terraform-apply:
 	cd terraform && \
+	terraform worspace select $(ENV) && \
 	terraform apply \
 	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
@@ -54,7 +56,7 @@ docker-push:
 	docker tag $(LOCAL_TAG) $(REMOTE_TAG)
 	docker push $(REMOTE_TAG)
 
-docker-deploy: terraform-init
+docker-deploy:
 	$(MAKE) ssh-cmd CMD='docker-credential-gcr configure-docker'
 	$(MAKE) ssh-cmd CMD='docker pull $(REMOTE_TAG)'
 	-$(MAKE) ssh-cmd CMD='docker container stop $(CONTAINER_NAME)'
