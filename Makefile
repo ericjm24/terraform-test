@@ -5,22 +5,22 @@ create-tf-backend-bucket:
 
 ENV=dev
 terraform-create-workspace:
-	cd app/terraform && terraform workspace new $(ENV)
+	cd terraform && terraform workspace new $(ENV)
 
 terraform-init:
-	cd app/terraform && \
+	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform init
 
-terraform-plan:
-	cd app/terraform && \
+terraform-plan: terraform-init
+	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform plan \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars"
 
-terraform-apply:
-	cd app/terraform && \
+terraform-apply: terraform-init
+	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform apply \
 	-auto-approve \
@@ -28,9 +28,15 @@ terraform-apply:
 	-var-file="./environments/common.tfvars"
 
 terraform-destroy:
-	cd app/terraform && \
+	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform destroy \
 	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars"
+
+ssh-cmd: terraform-init
+	@gcloud compute ssh $(SSH_STRING) \
+		--project=$(PROJECT_ID) \
+		--zone=$(ZONE) \
+		--command="$(CMD)"

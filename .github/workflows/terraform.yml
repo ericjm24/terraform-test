@@ -41,3 +41,12 @@ jobs:
           terraform plan
           -var-file="./environments/${{env.ENV}}/config.tfvars"
           -var-file="./environments/common.tfvars"
+      
+      - name: Deploy
+        run: >
+          cd terraform &&
+          terraform workspace select ${{env.ENV}} &&
+          terraform apply
+          -auto-approve
+          -var-file="./environments/${{env.ENV}}/config.tfvars"
+          -var-file="./environments/common.tfvars"
