@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print out
-        run: $GITHUB_REF
+        run: echo $GITHUB_REF
       # - name: Set ENV
       #   run: |-
       #     case ${GITHUB_REF##*/} in
