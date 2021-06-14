@@ -16,46 +16,49 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
-      - name: Set ENV
-        run: |
-          if [ ${GITHUB_REF##*/}="main" ]
-            then
-              echo "ENV=prod" >> $GITHUB_ENV
-          elif [ ${GITHUB_REF##*/}="stage" ]
-            then
-              echo "ENV=stage" >> $GITHUB_ENV
-          else
-              echo "ENV=dev" >> $GITHUB_ENV
-          fi
-      
-      - name: Checkout Repo
-        uses: actions/checkout@v2
+      - name: Print env
+        run: echo $GITHUB_REF
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+      # - name: Set ENV
+      #   run: |
+      #     if [ ${GITHUB_REF##*/}="main" ]
+      #       then
+      #         echo "ENV=prod" >> $GITHUB_ENV
+      #     elif [ ${GITHUB_REF##*/}="stage" ]
+      #       then
+      #         echo "ENV=stage" >> $GITHUB_ENV
+      #     else
+      #         echo "ENV=dev" >> $GITHUB_ENV
+      #     fi
+      
+      # - name: Checkout Repo
+      #   uses: actions/checkout@v2
 
-      - name: Install GCloud and export credentials
-        uses: google-github-actions/setup-gcloud@master
-        with:
-          service_account_key: ${{ secrets.GOOGLE_TOKEN}}
-          project_id: ${{ env.PROJECT_ID }}
-          export_default_credentials: true
-          credentials_file_path: ${{github.workspace}}/terraform/terraform-sa-key.json
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v1
 
-      - name: Init
-        run: cd terraform && terraform init -reconfigure
+      # - name: Install GCloud and export credentials
+      #   uses: google-github-actions/setup-gcloud@master
+      #   with:
+      #     service_account_key: ${{ secrets.GOOGLE_TOKEN}}
+      #     project_id: ${{ env.PROJECT_ID }}
+      #     export_default_credentials: true
+      #     credentials_file_path: ${{github.workspace}}/terraform/terraform-sa-key.json
 
-      - name: Plan
-        run: make terraform-plan
+      # - name: Init
+      #   run: cd terraform && terraform init -reconfigure
+
+      # - name: Plan
+      #   run: make terraform-plan
       
-      - name: Deploy
-        run: make terraform-apply
+      # - name: Deploy
+      #   run: make terraform-apply
       
-      - name: Docker Build
-        run: make docker-build
+      # - name: Docker Build
+      #   run: make docker-build
       
-      - name: Docker Push
-        run: gcloud auth configure-docker && make docker-push
+      # - name: Docker Push
+      #   run: gcloud auth configure-docker && make docker-push
       
-      - name: Docker Deploy
-        run: make docker-deploy
+      # - name: Docker Deploy
+      #   run: make docker-deploy
