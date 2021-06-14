@@ -1,8 +1,7 @@
 from flask import Flask
-import sys
 
 app = Flask(__name__)
-env = sys.env['ENV']
+env = "dev"
 
 @app.route("/")
 def index():
