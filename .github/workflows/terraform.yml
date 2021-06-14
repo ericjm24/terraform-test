@@ -14,7 +14,10 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
-      - name: Print out
+      - name: Print out 1
+        run: echo ${GITHUB_REF##*/}
+        
+      - name: Print out 2
         run: |
           if [ ${GITHUB_REF##*/}="main" ]
             then
