@@ -17,8 +17,11 @@ jobs:
       - name: Print out
         run: |
           if [ ${GITHUB_REF##*/}="main" ]
-          then
-          echo "prod"
+            then
+              echo "ENV=prod" >> $GITHUB_ENV
+          elif [ ${GITHUB_REF##*/}="stage" ]
+            then
+              echo "ENV=stage" >> $GITHUB_ENV
           fi 
       # - name: Set ENV
       #   run: |-
