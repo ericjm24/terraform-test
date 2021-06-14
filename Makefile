@@ -15,12 +15,14 @@ terraform-init:
 
 terraform-plan:
 	cd terraform && \
+	terraform workspace select $(ENV) && \
 	terraform plan \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars"
 
 terraform-apply:
 	cd terraform && \
+	terraform workspace select $(ENV) && \
 	terraform apply \
 	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
