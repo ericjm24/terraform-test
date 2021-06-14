@@ -31,22 +31,17 @@ jobs:
       - name: Set ENV
         run: echo "ENV=dev" >> $GITHUB_ENV
 
-      - name: Initialize
-        run: cd terraform && terraform init -reconfigure
-
       - name: Plan
-        run: >
-          cd terraform &&
-          terraform workspace select ${{env.ENV}} &&
-          terraform plan
-          -var-file="./environments/${{env.ENV}}/config.tfvars"
-          -var-file="./environments/common.tfvars"
+        run: make terraform-plan
       
       - name: Deploy
-        run: >
-          cd terraform &&
-          terraform workspace select ${{env.ENV}} &&
-          terraform apply
-          -auto-approve
-          -var-file="./environments/${{env.ENV}}/config.tfvars"
-          -var-file="./environments/common.tfvars"
+        run: make terraform-apply
+      
+      - name: Docker Build
+        run: make docker-build
+      
+      - name: Docker Push
+        run: make docker-push
+      
+      - name: Docker Deploy
+        run: make docker-deply
