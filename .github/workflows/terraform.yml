@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Set ENV
         run: |-
-          case ${{GITHUB_REF##*/}} in
+          case ${GITHUB_REF##*/} in
             stage)
               echo "ENV=stage" >> $GITHUB_ENV
             main)
