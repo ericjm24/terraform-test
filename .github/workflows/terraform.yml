@@ -29,13 +29,13 @@ jobs:
           credentials_file_path: ${{github.workspace}}/terraform/terraform-sa-key.json
 
       - name: Set ENV
-        run: >
+        run: > 
           if [ ${GITHUB_REF##*/} = "stage" ]; then
-            echo "ENV=stage" >> $GITHUB_ENV
-          if [ ${GITHUB_REF##*/} = "main" ]; then
-            echo "ENV=prod" >> $GITHUB_ENV
-          else 
-            echo "ENV=dev" >> $GITHUB_ENV
+            echo "ENV=stage" >> $GITHUB_ENV;
+          elif [ ${GITHUB_REF##*/} = "main" ]; then
+            echo "ENV=prod" >> $GITHUB_ENV;
+          else; 
+            echo "ENV=dev" >> $GITHUB_ENV;
           fi
 
       - name: Init
