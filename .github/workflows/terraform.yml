@@ -14,10 +14,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
-      - name: Print out 1
-        run: echo ${GITHUB_REF##*/}
-        
-      - name: Print out 2
+      - name: Set ENV
         run: |
           if [ ${GITHUB_REF##*/}="main" ]
             then
@@ -25,17 +22,13 @@ jobs:
           elif [ ${GITHUB_REF##*/}="stage" ]
             then
               echo "ENV=stage" >> $GITHUB_ENV
-          fi 
-      # - name: Set ENV
-      #   run: |-
-      #     case ${GITHUB_REF##*/} in
-      #       stage)
-      #         echo "ENV=stage" >> $GITHUB_ENV
-      #       main)
-      #         echo "ENV=prod" >> $GITHUB_ENV
-      #       *)
-      #         echo "ENV=dev" >> $GITHUB_ENV
-      #       esac
+          else
+            then
+              echo "ENV=dev" >> $GITHUB_ENV
+          fi
+      
+      - name: Env check
+        run: echo ${{env.ENV}}
       
       # - name: Print ENV
       #   run: echo ${{env.ENV}}
