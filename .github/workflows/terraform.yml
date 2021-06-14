@@ -23,7 +23,6 @@ jobs:
             then
               echo "ENV=stage" >> $GITHUB_ENV
           else
-            then
               echo "ENV=dev" >> $GITHUB_ENV
           fi
       
