@@ -6,7 +6,6 @@ on:
       - main
       - stage
       - dev
-  pull_request:
 
 env:
   PROJECT_ID: terraform-test-316516
