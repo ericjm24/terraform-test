@@ -15,7 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print out
-        run: echo ${GITHUB_REF##*/} 
+        run: |
+          if [ ${GITHUB_REF##*/}="main" ]
+          then
+          echo "prod"
+          fi 
       # - name: Set ENV
       #   run: |-
       #     case ${GITHUB_REF##*/} in
