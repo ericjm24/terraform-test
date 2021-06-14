@@ -31,6 +31,9 @@ jobs:
       - name: Set ENV
         run: echo "ENV=dev" >> $GITHUB_ENV
 
+      - name: Init
+        run: cd terraform && terraform init -reconfigure
+
       - name: Plan
         run: make terraform-plan
       

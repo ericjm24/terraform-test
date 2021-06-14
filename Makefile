@@ -10,7 +10,7 @@ terraform-create-workspace:
 terraform-init:
 	cd terraform && \
 	terraform workspace select $(ENV) && \
-	terraform init -reconfigure
+	terraform init
 
 terraform-plan: terraform-init
 	cd terraform && \
