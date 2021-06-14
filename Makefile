@@ -22,7 +22,7 @@ terraform-plan:
 
 terraform-apply:
 	cd terraform && \
-	terraform worspace select $(ENV) && \
+	terraform workspace select $(ENV) && \
 	terraform apply \
 	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
