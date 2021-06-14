@@ -3,7 +3,8 @@ P_ID=terraform-test-316516
 create-tf-backend-bucket:
 	gsutil mb -p $(P_ID) gs://$(P_ID)-terraform-bucket
 
-ENV=dev
+ENV?=dev
+
 terraform-create-workspace:
 	cd terraform && terraform workspace new $(ENV)
 
