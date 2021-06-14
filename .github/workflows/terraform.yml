@@ -14,19 +14,21 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
-      - name: Set ENV
-        run: |-
-          case ${GITHUB_REF##*/} in
-            stage)
-              echo "ENV=stage" >> $GITHUB_ENV
-            main)
-              echo "ENV=prod" >> $GITHUB_ENV
-            *)
-              echo "ENV=dev" >> $GITHUB_ENV
-            esac
+      - name: Print out
+        run: $GITHUB_REF
+      # - name: Set ENV
+      #   run: |-
+      #     case ${GITHUB_REF##*/} in
+      #       stage)
+      #         echo "ENV=stage" >> $GITHUB_ENV
+      #       main)
+      #         echo "ENV=prod" >> $GITHUB_ENV
+      #       *)
+      #         echo "ENV=dev" >> $GITHUB_ENV
+      #       esac
       
-      - name: Print ENV
-        run: echo ${{env.ENV}}
+      # - name: Print ENV
+      #   run: echo ${{env.ENV}}
       
       # - name: Checkout Repo
       #   uses: actions/checkout@v2
