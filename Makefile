@@ -38,6 +38,7 @@ SSH_STRING = 'eric_miller@terraform-test-${ENV}-vm'
 GITHUB_SHA?=latest
 LOCAL_TAG=terraform-test:$(GITHUB_SHA)
 REMOTE_TAG=gcr.io/$(P_ID)/$(LOCAL_TAG)
+CONTAINER_NAME=my-terraform-container
 
 ssh-cmd:
 	@gcloud compute ssh $(SSH_STRING) \
