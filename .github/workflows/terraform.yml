@@ -44,7 +44,7 @@ jobs:
         run: make docker-build
       
       - name: Docker Push
-        run: make docker-push
+        run: gcloud auth configure-docker && make docker-push
       
       - name: Docker Deploy
         run: make docker-deply
