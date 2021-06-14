@@ -1,11 +1,12 @@
 name: "Terraform"
 
 on:
-  push:
-    branches:
-      - main
-      - stage
-      - dev
+  # push:
+  #   branches:
+  #     - main
+  #     - stage
+  #     - dev
+  # Comment out these lines for the github action to run on push
 
 env:
   PROJECT_ID: terraform-test-316516
