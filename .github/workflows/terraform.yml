@@ -52,7 +52,7 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@main
         with: 
           path: ./terraform/environments/${{env.ENV}}/index.zip
-          destination: ericjm24-temp-bucket/${{env.ENV}}/index.zip
+          destination: ericjm24-temp-bucket/${{env.ENV}}/
       
       - name: Remove Zip Scripts
         uses: JesseTG/rm@v1.0.2
