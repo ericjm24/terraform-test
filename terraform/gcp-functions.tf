@@ -7,7 +7,7 @@ provider "google" {
 resource "google_storage_bucket_object" "archive" {
   name   = "${terraform.workspace}/index.zip"
   bucket = var.gcp_bucket
-  source = "../index.py"
+  source = "~/index.zip"
 }
 
 resource "google_cloudfunctions_function" "function" {
