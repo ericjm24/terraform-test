@@ -9,7 +9,7 @@ on:
   #Comment out these lines for the github action to run on push
 
 env:
-  PROJECT_ID: terraform-test-316516
+  GCP_PROJECT_ID: terraform-test-316516
   GCS_BUCKET: ericjm24-temp-bucket
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@master
         with:
           service_account_key: ${{ secrets.GOOGLE_TOKEN}}
-          project_id: ${{ env.PROJECT_ID }}
+          project_id: ${{ env.GCP_PROJECT_ID }}
           export_default_credentials: true
           credentials_file_path: ${{github.workspace}}/terraform/terraform-sa-key.json
       

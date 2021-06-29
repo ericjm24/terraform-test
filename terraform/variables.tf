@@ -10,7 +10,7 @@ variable "gcp_machine_type" {
     type = string
 }
 
-variable "gcp_bucket" {
+variable "gcs_bucket" {
     type = string
 }
 
