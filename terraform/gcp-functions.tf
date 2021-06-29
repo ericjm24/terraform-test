@@ -10,7 +10,7 @@ data "google_storage_bucket_object" "archive" {
 }
 
 resource "google_cloudfunctions_function" "function" {
-  name        = "function-test"
+  name        = "function-test-${terraform.workspace}"
   description = "My function"
   runtime     = "python38"
 
