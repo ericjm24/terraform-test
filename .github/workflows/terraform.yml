@@ -52,10 +52,10 @@ jobs:
       - name: Upload Zip scripts
         run: gsutil cp index.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}
       
-      - name: Remove Zip Scripts
-        uses: JesseTG/rm@v1.0.2
-        with:
-          path: index.zip
+      # - name: Remove Zip Scripts
+      #   uses: JesseTG/rm@v1.0.2
+      #   with:
+      #     path: index.zip
 
       - name: Init
         run: cd terraform && terraform init -reconfigure
