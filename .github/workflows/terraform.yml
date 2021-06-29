@@ -1,12 +1,12 @@
 name: "Terraform"
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  #     - stage
-  #     - dev
-  # Comment out these lines for the github action to run on push
+  push:
+    branches:
+      - main
+      - stage
+      - dev
+  Comment out these lines for the github action to run on push
 
 env:
   PROJECT_ID: terraform-test-316516
@@ -41,6 +41,23 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
           credentials_file_path: ${{github.workspace}}/terraform/terraform-sa-key.json
+      
+      - name: Zip Env Scripts
+        uses: papeloto/action-zip@v1
+        with:
+          files: ./terraform/scripts/
+          dest: ./terraform/environments/${{env.ENV}}/index.zip
+      
+      - name: Upload Zip Scripts
+        uses: google-github-actions/upload-cloud-storage@main
+        with: 
+          path: ./terraform/environments/${{env.ENV}}/index.zip
+          destination: ericjm24-temp-bucket/${{env.ENV}}/index.zip
+      
+      - name: Remove Zip Scripts
+        uses: JesseTG/rm@v.1.0.2
+        with:
+          path: ./terraform/environments/${{env.ENV}}/index.zip
 
       - name: Init
         run: cd terraform && terraform init -reconfigure
