@@ -30,7 +30,7 @@ terraform-apply:
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
-	-var="gcs_bucket=$(GCP_BUCKET)"
+	-var="gcs_bucket=$(GCS_BUCKET)"
 
 terraform-destroy:
 	cd terraform && \
@@ -40,4 +40,4 @@ terraform-destroy:
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
-	-var="gcs_bucket=$(GCP_BUCKET)"
+	-var="gcs_bucket=$(GCS_BUCKET)"
