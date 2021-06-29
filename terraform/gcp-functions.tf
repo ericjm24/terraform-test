@@ -5,7 +5,7 @@ provider "google" {
 }
 
 data "google_storage_bucket_object" "archive" {
-  name   = "${var.env_name}/index.zip"
+  name   = "${terraform.workspace}/index.zip"
   bucket = var.gcp_bucket
 }
 

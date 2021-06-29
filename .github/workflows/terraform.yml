@@ -51,11 +51,6 @@ jobs:
       
       - name: Upload Zip scripts
         run: gsutil cp index.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}
-      
-      # - name: Remove Zip Scripts
-      #   uses: JesseTG/rm@v1.0.2
-      #   with:
-      #     path: index.zip
 
       - name: Init
         run: cd terraform && terraform init -reconfigure
@@ -65,12 +60,3 @@ jobs:
       
       - name: Deploy
         run: make terraform-apply
-      
-      # - name: Docker Build
-      #   run: make docker-build
-      
-      # - name: Docker Push
-      #   run: gcloud auth configure-docker && make docker-push
-      
-      # - name: Docker Deploy
-      #   run: make docker-deploy
