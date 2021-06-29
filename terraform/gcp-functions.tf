@@ -4,10 +4,9 @@ provider "google" {
   region      = "us-central1"
 }
 
-resource "google_storage_bucket_object" "archive" {
-  name   = "${terraform.workspace}/index.zip"
+data "google_storage_bucket_object" "archive" {
+  name   = "${var.env_name}/index.zip"
   bucket = var.gcp_bucket
-  source = "~/index.zip"
 }
 
 resource "google_cloudfunctions_function" "function" {
@@ -17,7 +16,7 @@ resource "google_cloudfunctions_function" "function" {
 
   available_memory_mb   = 128
   source_archive_bucket = var.gcp_bucket
-  source_archive_object = google_storage_bucket_object.archive.name
+  source_archive_object = data.google_storage_bucket_object.archive.name
   trigger_http          = true
   entry_point           = "hello_world"
 }

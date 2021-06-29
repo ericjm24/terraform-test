@@ -10,6 +10,7 @@ on:
 
 env:
   PROJECT_ID: terraform-test-316516
+  GCS_BUCKET: ericjm24-temp-bucket
 
 jobs:
   terraform:
@@ -48,10 +49,13 @@ jobs:
           files: ./terraform/scripts/
           dest: index.zip
       
-      # - name: Remove Zip Scripts
-      #   uses: JesseTG/rm@v1.0.2
-      #   with:
-      #     path: ./terraform/environments/${{env.ENV}}/index.zip
+      - name: Upload Zip scripts
+        run: gsutil cp index.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}
+      
+      - name: Remove Zip Scripts
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: index.zip
 
       - name: Init
         run: cd terraform && terraform init -reconfigure
