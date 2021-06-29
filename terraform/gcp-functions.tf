@@ -15,7 +15,7 @@ resource "google_cloudfunctions_function" "function" {
   runtime     = "python38"
 
   available_memory_mb   = 128
-  source_archive_bucket = var.gcp_bucket
+  source_archive_bucket = var.gcs_bucket
   source_archive_object = data.google_storage_bucket_object.archive.name
   trigger_http          = true
   entry_point           = "hello_world"
