@@ -54,10 +54,10 @@ jobs:
           path: ./terraform/environments/${{env.ENV}}/index.zip
           destination: ericjm24-temp-bucket/${{env.ENV}}
       
-      - name: Remove Zip Scripts
-        uses: JesseTG/rm@v1.0.2
-        with:
-          path: ./terraform/environments/${{env.ENV}}/index.zip
+      # - name: Remove Zip Scripts
+      #   uses: JesseTG/rm@v1.0.2
+      #   with:
+      #     path: ./terraform/environments/${{env.ENV}}/index.zip
 
       - name: Init
         run: cd terraform && terraform init -reconfigure
