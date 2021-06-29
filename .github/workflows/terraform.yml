@@ -55,7 +55,7 @@ jobs:
           destination: ericjm24-temp-bucket/${{env.ENV}}/index.zip
       
       - name: Remove Zip Scripts
-        uses: JesseTG/rm@v.1.0.2
+        uses: JesseTG/rm@v1.0.2
         with:
           path: ./terraform/environments/${{env.ENV}}/index.zip
 
