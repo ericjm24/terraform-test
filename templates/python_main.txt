@@ -1,0 +1,5 @@
+{% for gcp_function in gcp_function_list %}def {{ gcp_function.func_name }}(*args, **kwargs):
+    from {{ gcp_function.func_path}} import main
+    main(*args, **kwargs)
+
+{% endfor %}

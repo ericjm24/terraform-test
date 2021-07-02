@@ -1,0 +1,3 @@
+gcp_function_list = [{% for gcp_function in gcp_function_list %}
+    "{{ gcp_function.func_name}}",{% endfor %}
+]

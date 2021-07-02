@@ -21,3 +21,7 @@ variable "aws_secret_key" {
 variable "s3_mirror_list" {
   type = list(string)
 }
+
+variable "gcp_function_list" {
+  type = list(string)
+}
