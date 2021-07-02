@@ -1,4 +1,4 @@
-ENV?=dev
+ENV=prod
 GCP_PROJECT_ID?="terraform-test-316516"
 GCS_BUCKET?="ericjm24-temp-bucket"
 
@@ -17,7 +17,6 @@ terraform-plan:
 	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform plan \
-	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
 	-var-file="./vendor_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
@@ -29,7 +28,6 @@ terraform-apply:
 	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform apply \
-	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
 	-var-file="./vendor_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
@@ -41,7 +39,6 @@ terraform-destroy:
 	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform destroy \
-	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
 	-var-file="./vendor_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
