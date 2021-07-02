@@ -1,4 +1,4 @@
-ENV=prod
+ENV?=prod
 GCP_PROJECT_ID?="terraform-test-316516"
 GCS_BUCKET?="ericjm24-temp-bucket"
 
@@ -18,7 +18,7 @@ terraform-plan:
 	terraform workspace select $(ENV) && \
 	terraform plan \
 	-var-file="./environments/common.tfvars" \
-	-var-file="./vendor_list.tfvars" \
+	-var-file="./s3_mirror_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
 	-var="gcs_bucket=$(GCS_BUCKET)" \
 	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
@@ -29,7 +29,7 @@ terraform-apply:
 	terraform workspace select $(ENV) && \
 	terraform apply \
 	-var-file="./environments/common.tfvars" \
-	-var-file="./vendor_list.tfvars" \
+	-var-file="./s3_mirror_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
 	-var="gcs_bucket=$(GCS_BUCKET)" \
 	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
@@ -41,7 +41,7 @@ terraform-destroy:
 	terraform workspace select $(ENV) && \
 	terraform destroy \
 	-var-file="./environments/common.tfvars" \
-	-var-file="./vendor_list.tfvars" \
+	-var-file="./s3_mirror_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
 	-var="gcs_bucket=$(GCS_BUCKET)" \
 	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \

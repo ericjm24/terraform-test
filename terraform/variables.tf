@@ -18,19 +18,6 @@ variable "aws_secret_key" {
     type = string
 }
 
-variable "s3_vendor_list" {
-  type = list(object({
-    s3_bucket_name = string
-    gcs_bucket_name = string
-    vendor_path = string
-    vendor_name = string
-  }))
+variable "s3_mirror_list" {
+  type = list(string)
 }
-
-#variable "gcs_vendor_list" {
-#  type = list(object({
-#    gcs_bucket_name = string
-#    vendor_path = string
-#    vendor_name = string
-#  }))
-#}
