@@ -59,11 +59,11 @@ jobs:
       # - name: Upload Zip scripts
       #   run: gsutil cp index.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
 
-      # - name: Init
-      #   run: cd terraform && terraform init -reconfigure
+      - name: Init
+        run: cd terraform && terraform init -reconfigure
 
-      # - name: Plan
-      #   run: make terraform-plan
+      - name: Plan
+        run: make terraform-plan
       
-      # - name: Deploy
-      #   run: make terraform-apply
+      - name: Deploy
+        run: make terraform-apply
