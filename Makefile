@@ -31,6 +31,7 @@ terraform-apply:
 	terraform apply \
 	-var-file="./environments/common.tfvars" \
 	-var-file="./s3_mirror_list.tfvars" \
+	-var-file="./gcp_function_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
 	-var="gcs_bucket=$(GCS_BUCKET)" \
 	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
@@ -42,6 +43,7 @@ terraform-destroy:
 	terraform workspace select $(ENV) && \
 	terraform destroy \
 	-var-file="./environments/common.tfvars" \
+	-var-file="./gcp_function_list.tfvars" \
 	-var-file="./s3_mirror_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
 	-var="gcs_bucket=$(GCS_BUCKET)" \

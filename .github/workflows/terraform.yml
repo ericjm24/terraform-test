@@ -69,7 +69,7 @@ jobs:
           dest: lib.zip
       
       - name: Upload Zip scripts
-        run: gsutil cp index.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
+        run: gsutil cp lib.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
 
       - name: Init
         run: cd terraform && terraform init -reconfigure
