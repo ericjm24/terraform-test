@@ -5,7 +5,7 @@ data "google_storage_bucket_object" "archive" {
 
 resource "google_cloudfunctions_function" "function" {
   for_each = toset(var.gcp_function_list)
-  name        = each.value
+  name        = "${each.value}_${terraform.workspace}"
   description = "My function"
   runtime     = "python38"
 
