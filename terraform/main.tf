@@ -11,4 +11,5 @@ provider "google" {
   region      = "us-central1"
 }
 
-provider "aws" {}
+provider "aws" {
+}

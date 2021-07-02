@@ -33,7 +33,8 @@ terraform-apply:
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
 	-var="gcs_bucket=$(GCS_BUCKET)" \
 	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
-	-var="aws_secret_key=$(AWS_SECRET_ACCESS_KEY)"
+	-var="aws_secret_key=$(AWS_SECRET_ACCESS_KEY)" \
+	-auto-approve
 
 terraform-destroy:
 	cd terraform && \
@@ -44,4 +45,5 @@ terraform-destroy:
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
 	-var="gcs_bucket=$(GCS_BUCKET)" \
 	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
-	-var="aws_secret_key=$(AWS_SECRET_ACCESS_KEY)"
+	-var="aws_secret_key=$(AWS_SECRET_ACCESS_KEY)" \
+	-auto-approve
