@@ -19,25 +19,32 @@ terraform-plan:
 	terraform plan \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
+	-var-file="./vendor_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
-	-var="gcs_bucket=$(GCS_BUCKET)"
+	-var="gcs_bucket=$(GCS_BUCKET)" \
+	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
+	-var="aws_secret_key=$(AWS_SECRET_ACCESS_KEY)"
 
 terraform-apply:
 	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform apply \
-	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
+	-var-file="./vendor_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
-	-var="gcs_bucket=$(GCS_BUCKET)"
+	-var="gcs_bucket=$(GCS_BUCKET)" \
+	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
+	-var="aws_secret_key=$(AWS_SECRET_ACCESS_KEY)"
 
 terraform-destroy:
 	cd terraform && \
 	terraform workspace select $(ENV) && \
 	terraform destroy \
-	-auto-approve \
 	-var-file="./environments/${ENV}/config.tfvars" \
 	-var-file="./environments/common.tfvars" \
+	-var-file="./vendor_list.tfvars" \
 	-var="gcp_project_id=$(GCP_PROJECT_ID)" \
-	-var="gcs_bucket=$(GCS_BUCKET)"
+	-var="gcs_bucket=$(GCS_BUCKET)" \
+	-var="aws_access_key=$(AWS_ACCESS_KEY_ID)" \
+	-var="aws_secret_key=$(AWS_SECRET_ACCESS_KEY)"

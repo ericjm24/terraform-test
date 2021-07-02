@@ -42,21 +42,28 @@ jobs:
           project_id: ${{ env.GCP_PROJECT_ID }}
           export_default_credentials: true
           credentials_file_path: ${{github.workspace}}/terraform/terraform-sa-key.json
-      
-      - name: Zip Env Scripts
-        uses: papeloto/action-zip@v1
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          files: ./terraform/scripts/
-          dest: index.zip
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
+          aws-region: us-west-1
       
-      - name: Upload Zip scripts
-        run: gsutil cp index.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
-
-      - name: Init
-        run: cd terraform && terraform init -reconfigure
-
-      - name: Plan
-        run: make terraform-plan
+      # - name: Zip Env Scripts
+      #   uses: papeloto/action-zip@v1
+      #   with:
+      #     files: ./terraform/scripts/
+      #     dest: index.zip
       
-      - name: Deploy
-        run: make terraform-apply
+      # - name: Upload Zip scripts
+      #   run: gsutil cp index.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
+
+      # - name: Init
+      #   run: cd terraform && terraform init -reconfigure
+
+      # - name: Plan
+      #   run: make terraform-plan
+      
+      # - name: Deploy
+      #   run: make terraform-apply
