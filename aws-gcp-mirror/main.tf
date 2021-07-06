@@ -69,7 +69,7 @@ resource "google_storage_transfer_job" "s3-bucket-nightly-mirror" {
 
 data "google_storage_bucket_object" "archive" {
   name   = "${terraform.workspace}/sftp_mover.zip"
-  bucket = var.gcs_bucket
+  bucket = var.gcs_infra_bucket
 }
 
 resource "google_cloudfunctions_function" "function" {
