@@ -67,10 +67,7 @@ resource "google_storage_transfer_job" "s3-bucket-nightly-mirror" {
   depends_on = [google_storage_bucket_iam_member.gcs-mirror]
 }
 
-data "google_storage_bucket_object" "archive" {
-  name   = "${terraform.workspace}/sftp_mover.zip"
-  bucket = var.gcs_infra_bucket
-}
+
 
 resource "google_cloudfunctions_function" "function" {
   name        = "${var.s3_bucket_name}_mover_${terraform.workspace}"
@@ -78,11 +75,11 @@ resource "google_cloudfunctions_function" "function" {
   runtime     = "python38"
 
   available_memory_mb   = 128
-  source_archive_bucket = var.gcs_bucket
-  source_archive_object = data.google_storage_bucket_object.archive.name
-  entry_point           = main
+  source_archive_bucket = var.gcs_infra_bucket
+  source_archive_object = var.sftp_mover_library
+  entry_point           = "sftp_mover"
 
-  event_trigger = {
+  event_trigger {
     event_type = "google.storage.object.finalize"
     resource = google_storage_bucket.gcs-mirror.name
   }

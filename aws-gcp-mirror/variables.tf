@@ -10,6 +10,10 @@ variable "gcs_infra_bucket" {
     type = string
 }
 
+variable "sftp_mover_library" {
+    type = string
+}
+
 variable "project" {
     type = string
 }

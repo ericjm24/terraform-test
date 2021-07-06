@@ -21,7 +21,7 @@ def parse_filename(filename, reg_match, reg_sub_in=None, reg_sub_out=None):
     return re.sub(reg_sub_in, reg_sub_out, filename)
 
 
-def main(event, context):
+def sftp_mover(event, context):
     my_query = query.format(table_name, event['bucket'])
     bq_client = bigquery.Client()
     storage_client = storage.Client()
