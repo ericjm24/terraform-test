@@ -68,8 +68,17 @@ jobs:
           files: ./vendors/
           dest: lib.zip
       
-      - name: Upload Zip scripts
+      - name: Zip sftp-mover
+        uses: papeloto/action-zip@v1
+        with:
+          files: ./sftp-mover/
+          dest: sftp_mover.zip
+      
+      - name: Upload Zip Env scripts
         run: gsutil cp lib.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
+      
+      - name: Upload Zipped sftp-mover
+        run: gsutil cp sftp_mover.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
 
       - name: Init
         run: cd terraform && terraform init -reconfigure
