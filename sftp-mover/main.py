@@ -30,6 +30,6 @@ def sftp_mover(event, context):
     query_job = bq_client.query(my_query)
     rows = query_job.result()
     for row in rows:
-        out_file = parse_filename(event['filename'], row['REGEXP_MATCH'], row['REGEXP_REPLACE_INPUT'], row['REGEXP_REPLACE_OUTPUT'])
+        out_file = parse_filename(event['name'], row['REGEXP_MATCH'], row['REGEXP_REPLACE_INPUT'], row['REGEXP_REPLACE_OUTPUT'])
         if out_file:
-            source_bucket.copy_blob(event['filename'], target_bucket, 'incoming/'+out_file)
+            source_bucket.copy_blob(event['name'], target_bucket, 'incoming/'+out_file)
