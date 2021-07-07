@@ -10,6 +10,7 @@ resource "google_storage_bucket" "gcs-mirror" {
   name          = var.gcs_bucket_name
   storage_class = "NEARLINE"
   project       = var.project
+  force_destroy = true
 }
 
 resource "google_storage_bucket_iam_member" "gcs-mirror" {

@@ -15,15 +15,15 @@ module "aws-gcp-mirror" {
     project=var.gcp_project_id
 }
 
-resource "google_cloudfunctions_function" "function" {
-  for_each = toset(var.gcp_function_list)
-  name        = "${each.value}_${terraform.workspace}"
-  description = "My function"
-  runtime     = "python38"
+# resource "google_cloudfunctions_function" "function" {
+#   for_each = toset(var.gcp_function_list)
+#   name        = "${each.value}_${terraform.workspace}"
+#   description = "My function"
+#   runtime     = "python38"
 
-  available_memory_mb   = 128
-  source_archive_bucket = var.gcs_bucket
-  source_archive_object = data.google_storage_bucket_object.archive.name
-  trigger_http          = true
-  entry_point           = each.value
-}
+#   available_memory_mb   = 128
+#   source_archive_bucket = var.gcs_bucket
+#   source_archive_object = data.google_storage_bucket_object.archive.name
+#   trigger_http          = true
+#   entry_point           = each.value
+# }

@@ -1,12 +1,12 @@
 from google.cloud import storage, bigquery
 import re
 
-table_name = "terraform-test-316516:DATA.VENDOR_REGEXP_LIST"
+table_name = "terraform-test-316516.DATA.VENDOR_REGEXP_LIST"
 target_bucket_name = 'ericjm24-temp-bucket'
 query = (
 """
 select VENDOR_NAME, CONVEYOR_NAME, REGEX_MATCH, REGEX_REPLACE_INPUT, REGEX_REPLACE_OUTPUT
-from {}
+from `{}`
 where VENDOR_SFTP_BUCKET = "{}"
 """
 )
