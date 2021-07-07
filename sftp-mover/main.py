@@ -5,7 +5,7 @@ table_name = "terraform-test-316516.DATA.VENDOR_REGEXP_LIST"
 target_bucket_name = 'ericjm24-temp-bucket'
 query = (
 """
-select VENDOR_NAME, CONVEYOR_NAME, REGEX_MATCH, REGEX_REPLACE_INPUT, REGEX_REPLACE_OUTPUT
+select VENDOR_NAME, CONVEYOR_NAME, REGEXP_MATCH, REGEXP_REPLACE_INPUT, REGEXP_REPLACE_OUTPUT
 from `{}`
 where VENDOR_SFTP_BUCKET = "{}"
 """
@@ -30,6 +30,6 @@ def sftp_mover(event, context):
     query_job = bq_client.query(my_query)
     rows = query_job.result()
     for row in rows:
-        out_file = parse_filename(event['filename'], row['REGEX_MATCH'], row['REGEX_REPLACE_INPUT'], row['REGEX_REPLACE_OUTPUT'])
+        out_file = parse_filename(event['filename'], row['REGEXP_MATCH'], row['REGEXP_REPLACE_INPUT'], row['REGEXP_REPLACE_OUTPUT'])
         if out_file:
             source_bucket.copy_blob(event['filename'], target_bucket, 'incoming/'+out_file)
