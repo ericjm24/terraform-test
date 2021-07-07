@@ -62,11 +62,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: us-west-1
       
-      - name: Zip Env Scripts
-        uses: papeloto/action-zip@v1
-        with:
-          files: ./vendors/
-          dest: lib.zip
+      # - name: Zip Env Scripts
+      #   uses: papeloto/action-zip@v1
+      #   with:
+      #     files: ./vendors/
+      #     dest: lib.zip
       
       - name: Zip sftp-mover
         uses: papeloto/action-zip@v1
@@ -74,8 +74,8 @@ jobs:
           files: ./sftp-mover/
           dest: sftp_mover.zip
       
-      - name: Upload Zip Env scripts
-        run: gsutil cp lib.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
+      # - name: Upload Zip Env scripts
+      #   run: gsutil cp lib.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
       
       - name: Upload Zipped sftp-mover
         run: gsutil cp sftp_mover.zip gs://${{env.GCS_BUCKET}}/${{env.ENV}}/
