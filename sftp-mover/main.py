@@ -32,4 +32,4 @@ def sftp_mover(event, context):
     for row in rows:
         out_file = parse_filename(event['name'], row['REGEXP_MATCH'], row['REGEXP_REPLACE_INPUT'], row['REGEXP_REPLACE_OUTPUT'])
         if out_file:
-            source_bucket.copy_blob(event['name'], target_bucket, 'incoming/'+out_file)
+            source_bucket.copy_blob(source_bucket.blob(event['name']), target_bucket, 'incoming/'+out_file)
